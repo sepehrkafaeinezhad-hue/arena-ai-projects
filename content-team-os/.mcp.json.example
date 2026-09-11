@@ -1,0 +1,20 @@
+{
+  "_comment": "Rename this file to .mcp.json to activate. All servers are OPTIONAL — the system works without them. After renaming, run /mcp inside Claude Code to verify.",
+  "mcpServers": {
+    "canva": {
+      "type": "http",
+      "url": "https://mcp.canva.com/mcp"
+    },
+    "metricool": {
+      "type": "http",
+      "url": "https://ai.metricool.com/mcp"
+    },
+    "postiz": {
+      "type": "http",
+      "url": "https://mcp.postiz.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <POSTIZ_API_KEY>"
+      }
+    }
+  }
+}
