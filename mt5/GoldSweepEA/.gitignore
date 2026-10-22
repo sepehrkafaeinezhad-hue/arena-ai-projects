@@ -1,0 +1,4 @@
+tools/_build_syntax.cpp
+tools/_build_warn.cpp
+__pycache__/
+*.ex5
