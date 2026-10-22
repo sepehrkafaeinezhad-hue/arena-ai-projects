@@ -3,8 +3,20 @@
 import re
 from pathlib import Path
 
-SRC = Path(__file__).resolve().parent.parent / "Experts" / "GoldSweepEA.mq5"
-SET = Path(__file__).resolve().parent.parent / "Presets" / "GoldSweepEA_XAUUSD_M15.set"
+HERE = Path(__file__).resolve().parent
+
+
+def locate(name: str) -> Path:
+    """Works both in the repo (../Experts) and in the downloaded MT5 package (../MQL5/Experts)."""
+    for base in (HERE.parent, HERE.parent / "MQL5", HERE.parent.parent):
+        candidate = base / name
+        if candidate.exists():
+            return candidate
+    raise SystemExit(f"{name} not found next to tools/")
+
+
+SRC = locate("Experts/GoldSweepEA.mq5")
+SET = locate("Presets/GoldSweepEA_XAUUSD_M15.set")
 
 ENUMS = {
     "GS_RISK_PERCENT": "0", "GS_RISK_FIXED_LOT": "1",

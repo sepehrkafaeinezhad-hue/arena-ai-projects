@@ -14,7 +14,19 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-SRC = ROOT.parent / "Experts" / "GoldSweepEA.mq5"
+
+
+def find_ea() -> Path:
+    """Works both in the repo (../Experts) and in the downloaded MT5 package (../MQL5/Experts)."""
+    for candidate in (ROOT.parent / "Experts" / "GoldSweepEA.mq5",
+                      ROOT.parent / "MQL5" / "Experts" / "GoldSweepEA.mq5",
+                      ROOT.parent.parent / "Experts" / "GoldSweepEA.mq5"):
+        if candidate.exists():
+            return candidate
+    raise SystemExit("GoldSweepEA.mq5 not found next to tools/")
+
+
+SRC = find_ea()
 OUT = ROOT / "_build_syntax.cpp"
 
 ARRAY_PARAM = re.compile(r'\b([A-Za-z_]\w*)\s*&\s*([A-Za-z_]\w*)\[\]')
